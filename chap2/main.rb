@@ -1,9 +1,9 @@
 require '../chap2/simple_language/main.rb'
 
-Machine.new(
-  Assign.new(:x, Add.new(Variable.new(:x), Number.new(1))),
-  { x: Number.new(2) }
-).run
+# Machine.new(
+#   Assign.new(:x, Add.new(Variable.new(:x), Number.new(1))),
+#   { x: Number.new(2) }
+# ).run
 
 # Machine.new(
 #  LessThan.new(
@@ -25,3 +25,17 @@ Machine.new(
 #   Add.new(Variable.new(:x), Variable.new(:y)),
 #   { x: Number.new(3), y: Number.new(4) }
 # ).run
+
+Machine.new(
+  If.new(
+    Variable.new(:x),
+    Assign.new(:y, Number.new(1)),
+    Assign.new(:y, Number.new(2))
+  ),
+  { x: Boolean.new(true) }
+).run
+
+Machine.new(
+  If.new(Variable.new(:x), Assign.new(:y, Number.new(1)), DoNothing.new),
+  { x: Boolean.new(false) }
+).run
