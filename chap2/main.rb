@@ -26,16 +26,23 @@ require '../chap2/simple_language/main.rb'
 #   { x: Number.new(3), y: Number.new(4) }
 # ).run
 
+# Machine.new(
+#   If.new(
+#     Variable.new(:x),
+#     Assign.new(:y, Number.new(1)),
+#     Assign.new(:y, Number.new(2))
+#   ),
+#   { x: Boolean.new(true) }
+# ).run
+#
+# Machine.new(
+#   If.new(Variable.new(:x), Assign.new(:y, Number.new(1)), DoNothing.new),
+#   { x: Boolean.new(false) }
+# ).run
 Machine.new(
-  If.new(
-    Variable.new(:x),
-    Assign.new(:y, Number.new(1)),
-    Assign.new(:y, Number.new(2))
+  Sequence.new(
+    Assign.new(:x, Add.new(Number.new(1), Number.new(1))),
+    Assign.new(:y, Add.new(Variable.new(:x), Number.new(3)))
   ),
-  { x: Boolean.new(true) }
-).run
-
-Machine.new(
-  If.new(Variable.new(:x), Assign.new(:y, Number.new(1)), DoNothing.new),
-  { x: Boolean.new(false) }
+  {}
 ).run
